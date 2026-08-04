@@ -1,0 +1,3 @@
+"use server";import {cookies} from "next/headers";import {redirect} from "next/navigation";import {getSession} from "@/lib/auth";import {db} from "@/lib/db";import crypto from "node:crypto";import {revalidatePath} from "next/cache";
+export async function logout(){(await cookies()).delete("radar_session");redirect("/")}
+export async function resetShare(){const s=await getSession();if(!s)redirect("/login");await db.license.update({where:{userId:s.userId},data:{shareToken:crypto.randomBytes(18).toString("hex")}});await db.event.create({data:{userId:s.userId,type:"share",detail:"Secure share link was reset"}});revalidatePath("/dashboard")}

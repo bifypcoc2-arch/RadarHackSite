@@ -1,0 +1,1 @@
+import {NextResponse} from "next/server";export async function POST(req:Request){const{locale}=await req.json();const res=NextResponse.json({ok:true});res.cookies.set("radar_locale",locale==="en"?"en":"ru",{path:"/",sameSite:"lax",maxAge:31536000});return res}
