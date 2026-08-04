@@ -1,0 +1,6 @@
+import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcryptjs";
+import crypto from "node:crypto";
+const db=new PrismaClient();
+async function main(){const hash=await bcrypt.hash("radar-demo-2026",12);const user=await db.user.upsert({where:{email:"demo@webradar.dev"},update:{},create:{email:"demo@webradar.dev",passwordHash:hash,name:"Radar Operator"}});await db.license.upsert({where:{userId:user.id},update:{},create:{userId:user.id,key:"WR-LIFE-7X9K-2P4M-8Q1Z",plan:"lifetime",shareToken:crypto.randomBytes(18).toString("hex")}});if(await db.radarSession.count({where:{userId:user.id}})===0)await db.radarSession.createMany({data:[{userId:user.id,device:"Windows Desktop",ip:"91.42.•••.18",location:"Berlin, DE"},{userId:user.id,device:"iPhone · Safari",ip:"91.42.•••.18",location:"Berlin, DE"}]});if(await db.event.count({where:{userId:user.id}})===0)await db.event.createMany({data:[{userId:user.id,type:"session",detail:"Radar session connected"},{userId:user.id,type:"share",detail:"Secure share link generated"},{userId:user.id,type:"license",detail:"Lifetime license activated"}]});console.log("Seeded demo@webradar.dev / radar-demo-2026")}
+main().finally(()=>db.$disconnect());

@@ -1,0 +1,6 @@
+generator client { provider = "prisma-client-js" }
+datasource db { provider = "sqlite"; url = env("DATABASE_URL") }
+model User { id String @id @default(cuid()) email String @unique passwordHash String name String locale String @default("ru") license License? events Event[] sessions RadarSession[] createdAt DateTime @default(now()) }
+model License { id String @id @default(cuid()) key String @unique plan String status String @default("active") expiresAt DateTime? shareToken String @unique userId String @unique user User @relation(fields:[userId],references:[id],onDelete:Cascade) createdAt DateTime @default(now()) }
+model RadarSession { id String @id @default(cuid()) device String ip String location String lastSeen DateTime @default(now()) active Boolean @default(true) userId String user User @relation(fields:[userId],references:[id],onDelete:Cascade) }
+model Event { id String @id @default(cuid()) type String detail String createdAt DateTime @default(now()) userId String user User @relation(fields:[userId],references:[id],onDelete:Cascade) }

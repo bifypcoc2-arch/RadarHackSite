@@ -1,0 +1,2 @@
+Web Radar launcher placeholder.
+Replace this file with the signed production launcher binary.

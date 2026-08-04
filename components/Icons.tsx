@@ -1,0 +1,5 @@
+type P={size?:number;className?:string};
+export const RadarIcon=({size=24,className}:P)=><svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden><circle cx="12" cy="12" r="9" stroke="currentColor"/><circle cx="12" cy="12" r="5" stroke="currentColor" opacity=".45"/><path d="M12 12 18.5 5.5M12 3v18M3 12h18" stroke="currentColor" opacity=".6"/><circle cx="16.6" cy="7.4" r="1.7" fill="currentColor"/></svg>;
+export const Arrow=({size=18}:P)=><svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden><path d="m9 5 7 7-7 7" stroke="currentColor" strokeWidth="1.8"/></svg>;
+export const Check=({size=18}:P)=><svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden><path d="m5 12.5 4.2 4L19 7" stroke="currentColor" strokeWidth="2"/></svg>;
+export const Copy=({size=18}:P)=><svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden><rect x="8" y="8" width="11" height="11" rx="2" stroke="currentColor"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" stroke="currentColor"/></svg>;
