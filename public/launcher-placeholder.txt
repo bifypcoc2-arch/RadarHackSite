@@ -1,2 +1,2 @@
-Web Radar launcher placeholder.
-Replace this file with the signed production launcher binary.
+Foresight launcher placeholder.
+Replace this file with the signed production Foresight launcher binary.

@@ -1,4 +1,4 @@
-# Web Radar
+# Foresight
 
 Premium bilingual product website and protected customer dashboard built with Next.js 16 App Router, TypeScript, pure CSS, Prisma/SQLite, `jose`, `bcryptjs` and Stripe Checkout.
 
@@ -16,8 +16,8 @@ Open `http://localhost:3000`.
 
 Demo credentials:
 
-- Email: `demo@webradar.dev`
-- Password: `radar-demo-2026`
+- Email: `demo@foresight.gg`
+- Password: `foresight-demo-2026`
 
 ## Stripe
 
@@ -25,9 +25,9 @@ Create two one-time Stripe Prices and fill `STRIPE_MONTHLY_PRICE_ID` and `STRIPE
 
 ## Routes
 
-- `/` — bilingual product landing
+- `/` — Foresight product landing with animated Cache radar
 - `/pricing` — plans and Stripe Checkout
 - `/login` — secure sign in
-- `/dashboard` — protected customer control center
+- `/dashboard` — protected Foresight control center
 
 The launcher file in `public/launcher-placeholder.txt` is intentionally a placeholder for a signed production binary.
