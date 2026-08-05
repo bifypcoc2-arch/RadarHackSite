@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Saira, Saira_Condensed } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
+import { MotionLayer } from "@/components/MotionLayer";
 import "./globals.css";
-import "./polish.css";
+import "./v3.css";
 
-const saira = Saira({ subsets: ["latin", "cyrillic"], variable: "--font-saira" });
-const condensed = Saira_Condensed({ subsets: ["latin"], weight: ["500", "600", "700"], variable: "--font-condensed" });
+const inter = Inter({ subsets: ["latin", "cyrillic"], variable: "--font-inter" });
+const mono = JetBrains_Mono({ subsets: ["latin", "cyrillic"], variable: "--font-mono" });
 
 export const metadata: Metadata = {
   title: { default: "Web Radar — Live tactical intelligence", template: "%s · Web Radar" },
@@ -12,5 +13,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="ru" className={`${saira.variable} ${condensed.variable}`}><body>{children}</body></html>;
+  return <html lang="ru" className={`${inter.variable} ${mono.variable}`}><body><MotionLayer />{children}</body></html>;
 }
