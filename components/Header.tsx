@@ -15,7 +15,7 @@ export async function Header() {
         </Link>
         <nav className="nav-links">
           <Link href="/#features">{pick(locale, { ru: "Возможности", en: "Features" })}</Link>
-          <Link href="/foresight/demo">Demo</Link>
+          <Link href="/demo">Demo</Link>
           <Link href="/pricing">{pick(locale, { ru: "Цены", en: "Pricing" })}</Link>
           <Link href="/#start">{pick(locale, { ru: "Как начать", en: "How it works" })}</Link>
         </nav>
