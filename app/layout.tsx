@@ -5,6 +5,7 @@ import "./globals.css";
 import "./v3.css";
 import "./cache.css";
 import "./narrative.css";
+import "./realtime.css";
 
 const inter = Inter({ subsets: ["latin", "cyrillic"], variable: "--font-inter" });
 const mono = JetBrains_Mono({ subsets: ["latin", "cyrillic"], variable: "--font-mono" });
