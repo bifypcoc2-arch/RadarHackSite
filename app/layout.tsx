@@ -4,6 +4,7 @@ import { MotionLayer } from "@/components/MotionLayer";
 import "./globals.css";
 import "./v3.css";
 import "./cache.css";
+import "./narrative.css";
 
 const inter = Inter({ subsets: ["latin", "cyrillic"], variable: "--font-inter" });
 const mono = JetBrains_Mono({ subsets: ["latin", "cyrillic"], variable: "--font-mono" });
