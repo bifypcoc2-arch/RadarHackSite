@@ -1,14 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
-import { MotionLayer } from "@/components/MotionLayer";
 
 import "./globals.css";
-import "./v3.css";
-import "./cache.css";
-import "./narrative.css";
-import "./realtime.css";
-import "./simulation.css";
-import "./clutch.css";
+import "./final.css";
 
 const inter = Inter({
   subsets: ["latin", "cyrillic"],
@@ -25,20 +19,15 @@ export const metadata: Metadata = {
     default: "Foresight — Live tactical intelligence",
     template: "%s · Foresight",
   },
-  description: "Foresight delivers fast, precise web-based tactical intelligence.",
+  description: "Foresight turns live match data into a precise tactical picture.",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ru" className={`${inter.variable} ${mono.variable}`}>
-      <body>
-        <MotionLayer />
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
