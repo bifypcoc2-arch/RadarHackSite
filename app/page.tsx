@@ -62,8 +62,7 @@ export default async function Home() {
                 {["NAVMESH / MID → HIGHWAY", "CONTACT / CAR", "ELIMINATION / QUAD", "OBJECTIVE / A SITE"].map((item, index) => (
                   <div className="data-row" key={item}>
                     <span className={index > 1 ? "dot red" : "dot"} />
-                    <strong>{item}</strong>
-                    <em>{[18, 42, 67, 91][index]}%</em>
+                    <strong>{item}</strong><em>{[18, 42, 67, 91][index]}%</em>
                     <div><i style={{ width: `${[18, 42, 67, 91][index]}%` }} /></div>
                   </div>
                 ))}
@@ -74,20 +73,17 @@ export default async function Home() {
               <div className="feature-copy">
                 <span className="count">02 / SECURE SESSION</span>
                 <h2>{t("Один адрес. Любой экран.", "One address. Any screen.")}</h2>
-                <p>{t("Создайте персональную демо-сессию по нику и откройте радар на втором устройстве.", "Create a personal demo session by username and open the radar on a second device.")}</p>
+                <p>{t("Когда игрок входит на приватный сервер, Foresight автоматически создаёт отдельную страницу радара с его ником и уникальным ID.", "When a player joins the private server, Foresight automatically creates a dedicated radar page with their username and a unique ID.")}</p>
                 <div className="share-demo">
                   <small>PERSONAL RADAR URL</small>
-                  <code>foresight.gg/demo/username</code>
-                  <span>ACTIVE</span>
+                  <code>foresight.gg/radar/username/F8K2P7Q4</code><span>ACTIVE</span>
                 </div>
               </div>
               <div className="data-panel">
                 <div className="panel-top"><span>SESSION TELEMETRY</span><i>SECURE</i></div>
                 {["USER / PLAYER_NAME", "MAP / DE_CACHE", "MODEL / RULE BASED", "UPDATE / 20 HZ"].map((item, index) => (
                   <div className="data-row" key={item}>
-                    <span className="dot" />
-                    <strong>{item}</strong>
-                    <em>{index === 0 ? "AUTH" : "LIVE"}</em>
+                    <span className="dot" /><strong>{item}</strong><em>{index === 0 ? "AUTH" : "LIVE"}</em>
                     <div><i style={{ width: `${100 - index * 8}%` }} /></div>
                   </div>
                 ))}
@@ -106,9 +102,7 @@ export default async function Home() {
               {cards.map(([heading, description], index) => (
                 <article className="feature-card" key={heading}>
                   <div className="card-visual"><span>{String(index + 1).padStart(2, "0")}</span></div>
-                  <h3>{heading}</h3>
-                  <p>{description}</p>
-                  <b>LIVE DATA <Arrow size={14} /></b>
+                  <h3>{heading}</h3><p>{description}</p><b>LIVE DATA <Arrow size={14} /></b>
                 </article>
               ))}
             </div>
@@ -124,8 +118,8 @@ export default async function Home() {
             <div className="steps">
               {[
                 ["01", t("Выберите доступ", "Choose access")],
-                ["02", t("Откройте сессию", "Open a session")],
-                ["03", t("Следите за раундом", "Follow the round")],
+                ["02", t("Зайдите в матч", "Join the match")],
+                ["03", t("Получите ссылку радара", "Get the radar URL")],
               ].map(([number, heading]) => (
                 <div className="step" key={number}>
                   <b>{number}</b><h3>{heading}</h3>
@@ -134,8 +128,11 @@ export default async function Home() {
               ))}
             </div>
             <div className="cta">
-              <div><span className="eyebrow">{t("ГОТОВЫ УВИДЕТЬ СИСТЕМУ?", "READY TO SEE THE SYSTEM?")}</span><h2>{t("Запустите персональное демо.", "Launch a personal demo.")}</h2></div>
-              <Link href="/demo" className="button">{t("Открыть Foresight", "Open Foresight")}<Arrow /></Link>
+              <div>
+                <span className="eyebrow">{t("СЕССИЯ СОЗДАЁТСЯ АВТОМАТИЧЕСКИ", "THE SESSION IS CREATED AUTOMATICALLY")}</span>
+                <h2>{t("Зайдите в матч — Foresight откроет ваш радар.", "Join the match — Foresight opens your radar.")}</h2>
+              </div>
+              <Link href="/demo" className="button">{t("Открыть тестовый режим", "Open test mode")}<Arrow /></Link>
             </div>
           </div>
         </section>
