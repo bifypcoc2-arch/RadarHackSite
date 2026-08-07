@@ -1,0 +1,12 @@
+{
+  "name": "foresight-realtime-gateway",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node app.js",
+    "check": "node --check app.js"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}
