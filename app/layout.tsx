@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 
 import "./globals.css";
 import "./final.css";
+import "./broadcast.css";
 
 const inter = Inter({
   subsets: ["latin", "cyrillic"],
