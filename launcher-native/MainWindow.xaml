@@ -86,7 +86,7 @@
 
                 <Grid Grid.Column="0" Margin="58,48,52,40">
                     <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /><RowDefinition Height="*" /></Grid.RowDefinitions>
-                    <TextBlock Text="MATCH ACCESS TERMINAL" Foreground="#FF747E" FontFamily="Consolas" FontWeight="Bold" FontSize="10" CharacterSpacing="140" />
+                    <TextBlock Text="MATCH ACCESS TERMINAL" Foreground="#FF747E" FontFamily="Consolas" FontWeight="Bold" FontSize="10" />
                     <TextBlock Grid.Row="1" Text="YOUR MATCH.&#x0a;ONE LINK." Foreground="{StaticResource TextBrush}" FontFamily="Arial" FontWeight="Black" FontSize="64" LineHeight="57" Margin="0,19,0,18" />
                     <TextBlock Grid.Row="2" Text="Enter the username and session ID created by your private server. Foresight verifies the match and opens its personal radar." Foreground="#8794A6" FontFamily="Segoe UI" FontSize="14" TextWrapping="Wrap" LineHeight="23" MaxWidth="520" HorizontalAlignment="Left" />
 
