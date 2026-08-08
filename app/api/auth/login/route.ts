@@ -4,6 +4,7 @@ import { signSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 
 export const runtime = "nodejs";
+const secureCookie = process.env.NODE_ENV === "production" && process.env.COOKIE_SECURE !== "false";
 
 export async function POST(request: NextRequest) {
   const body = await request.json().catch(() => null);
@@ -19,6 +20,6 @@ export async function POST(request: NextRequest) {
 
   const token = await signSession({ userId: user.id, email: user.email });
   const response = NextResponse.json({ user: { name: user.name, email: user.email, plan: user.license?.plan ?? "none", licenseStatus: user.license?.status ?? "inactive" } });
-  response.cookies.set("radar_session", token, { httpOnly: true, sameSite: "lax", secure: process.env.NODE_ENV === "production", path: "/", maxAge: 604800 });
+  response.cookies.set("radar_session", token, { httpOnly: true, sameSite: "lax", secure: secureCookie, path: "/", maxAge: 604800 });
   return response;
 }

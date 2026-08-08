@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 
+const secureCookie = process.env.NODE_ENV === "production" && process.env.COOKIE_SECURE !== "false";
+
 export async function GET() {
   const session = await getSession();
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -12,6 +14,6 @@ export async function GET() {
 
 export async function DELETE() {
   const response = NextResponse.json({ ok: true });
-  response.cookies.set("radar_session", "", { httpOnly: true, sameSite: "lax", secure: process.env.NODE_ENV === "production", path: "/", maxAge: 0 });
+  response.cookies.set("radar_session", "", { httpOnly: true, sameSite: "lax", secure: secureCookie, path: "/", maxAge: 0 });
   return response;
 }
