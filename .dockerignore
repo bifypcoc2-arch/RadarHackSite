@@ -1,0 +1,13 @@
+node_modules
+.next
+.git
+.github
+.env
+.env.*
+!.env.example
+storage
+backups
+launcher-native/bin
+launcher-native/obj
+**/*.log
+.DS_Store

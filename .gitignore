@@ -2,7 +2,12 @@ node_modules
 .next
 .env
 .env.local
+.env.production
 prisma/dev.db
 prisma/dev.db-journal
+storage/
+backups/
+launcher-native/bin/
+launcher-native/obj/
 *.log
 .DS_Store
