@@ -28,13 +28,22 @@ if [[ ! -f .env.production ]]; then
   sed -i "s/AUTH_SECRET=generate-a-long-random-value/AUTH_SECRET=$auth_secret/" .env.production
   sed -i "s/RADAR_INGEST_SECRET=generate-another-long-random-value/RADAR_INGEST_SECRET=$radar_secret/" .env.production
   chmod 600 .env.production
-  echo "Created .env.production with random secrets. Set DOMAIN, URLs, email and Stripe values, then rerun this script."
+  echo "Created .env.production with random secrets. Set DOMAIN and the public URLs, then rerun this script."
   exit 0
 fi
 
-if grep -q "radar.example.com\|admin@example.com" .env.production; then
-  echo "Edit .env.production and replace the example domain and email first."
+if grep -qE '^(DOMAIN|NEXT_PUBLIC_APP_URL|NEXT_PUBLIC_RADAR_WS_URL)=.*(radar\.example\.com|203\.0\.113\.10)' .env.production; then
+  echo "Edit .env.production and replace the example domain or IP address first."
   exit 1
+fi
+
+if grep -qE '^(AUTH_SECRET|RADAR_INGEST_SECRET)=generate-' .env.production; then
+  echo "Generate real AUTH_SECRET and RADAR_INGEST_SECRET values first."
+  exit 1
+fi
+
+if grep -qE '^DOMAIN=https?://[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+' .env.production; then
+  echo "IP-only mode detected: serving plain HTTP without a TLS certificate."
 fi
 
 docker compose --env-file .env.production config >/dev/null
