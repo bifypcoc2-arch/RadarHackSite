@@ -1,0 +1,24 @@
+// ─────────────────────────────────────────────────────────────
+// 1. Add these two fields to the existing `User` model:
+// ─────────────────────────────────────────────────────────────
+//
+//   emailVerified      DateTime?
+//   verificationTokens EmailVerificationToken[]
+//
+// ─────────────────────────────────────────────────────────────
+// 2. Append this new model to prisma/schema.prisma:
+// ─────────────────────────────────────────────────────────────
+
+model EmailVerificationToken {
+  id         String    @id @default(cuid())
+  tokenHash  String    @unique
+  userId     String
+  expiresAt  DateTime
+  consumedAt DateTime?
+  createdAt  DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+}
