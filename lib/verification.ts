@@ -1,6 +1,6 @@
 import { createHash, randomBytes } from "node:crypto";
 
-import { prisma } from "@/lib/db";
+import { db as prisma } from "@/lib/db";
 import { sendEmail } from "@/lib/mailer";
 
 const TOKEN_TTL_MS = 1000 * 60 * 60 * 24;

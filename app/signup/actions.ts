@@ -3,7 +3,7 @@
 import { headers } from "next/headers";
 import bcrypt from "bcryptjs";
 
-import { prisma } from "@/lib/db";
+import { db as prisma } from "@/lib/db";
 import { clientKey, checkRateLimit } from "@/lib/rateLimit";
 import { issueEmailVerification } from "@/lib/verification";
 
@@ -15,6 +15,11 @@ export type SignupState = {
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const MIN_PASSWORD_LENGTH = 10;
+
+function displayName(email: string): string {
+  const local = email.split("@")[0] || "player";
+  return local.slice(0, 32);
+}
 
 function dictionary(locale: "ru" | "en") {
   if (locale === "en") {
@@ -95,7 +100,7 @@ export async function signupAction(
 
     const passwordHash = await bcrypt.hash(password, 12);
     const user = await prisma.user.create({
-      data: { email, passwordHash },
+      data: { email, passwordHash, name: displayName(email), locale },
       select: { id: true },
     });
 

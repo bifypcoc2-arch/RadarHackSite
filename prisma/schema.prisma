@@ -8,15 +8,31 @@ datasource db {
 }
 
 model User {
-  id           String         @id @default(cuid())
-  email        String         @unique
-  passwordHash String
-  name         String
-  locale       String         @default("ru")
-  license      License?
-  events       Event[]
-  sessions     RadarSession[]
-  createdAt    DateTime       @default(now())
+  id                 String                   @id @default(cuid())
+  email              String                   @unique
+  passwordHash       String
+  name               String
+  locale             String                   @default("ru")
+  emailVerified      DateTime?
+  license            License?
+  events             Event[]
+  sessions           RadarSession[]
+  verificationTokens EmailVerificationToken[]
+  createdAt          DateTime                 @default(now())
+}
+
+model EmailVerificationToken {
+  id         String    @id @default(cuid())
+  tokenHash  String    @unique
+  userId     String
+  expiresAt  DateTime
+  consumedAt DateTime?
+  createdAt  DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
 }
 
 model License {

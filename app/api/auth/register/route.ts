@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 
-import { prisma } from "@/lib/db";
+import { db as prisma } from "@/lib/db";
 import { checkRateLimit, clientKey } from "@/lib/rateLimit";
 import { issueEmailVerification } from "@/lib/verification";
 
@@ -9,6 +9,11 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const MIN_PASSWORD_LENGTH = 10;
 
 export const dynamic = "force-dynamic";
+
+function displayName(email: string): string {
+  const local = email.split("@")[0] || "player";
+  return local.slice(0, 32);
+}
 
 // JSON registration endpoint used by the launcher.
 export async function POST(request: Request) {
@@ -57,7 +62,7 @@ export async function POST(request: Request) {
 
     const passwordHash = await bcrypt.hash(password, 12);
     const user = await prisma.user.create({
-      data: { email, passwordHash },
+      data: { email, passwordHash, name: displayName(email), locale },
       select: { id: true },
     });
 
